@@ -4,9 +4,9 @@ import loadDatabase from './config/loadDatabase.js'
 import morgan from "morgan";
 import cors from "cors";
 import { JWT_SECRET } from "./config/env.js";
-import errorHandler from "./middleware/errorHandler.js";
 import authRouter from "./routes/auth.routes.js";
 import userRouter from "./routes/user.routes.js";
+import errorMiddleware from "./middleware/error.middleware.js";
 
 // Terminate process if no JWT_SECRET
 if (!JWT_SECRET) {
@@ -20,11 +20,17 @@ process.on("uncaughtException", (ex) => {
 });
 const app = express();
 
+const corsOrigin = {
+  origin: ['http://localhost:5173'],
+  httpOnly:true
+}
+
 // middleware
 app.use(express.json());
-app.use(cors());
+app.use(cors(corsOrigin));
 app.use(cookieParser());
 app.use(morgan("tiny"));
+app.use(express.urlencoded({ extended : false}))
 
 // routes
 app.get('/', (req, res) =>{
@@ -35,7 +41,8 @@ app.use('/api/users', userRouter)
 
 
 // Handle error handling
-app.use(errorHandler)
+app.use(errorMiddleware)
+
 
 export default app;
 loadDatabase()

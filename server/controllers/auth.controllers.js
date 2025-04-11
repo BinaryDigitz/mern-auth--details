@@ -1,3 +1,4 @@
+import UserModel from '../models/user.model.js'
 import asyncMiddleware from '../middleware/asyncMiddleware.js'
 
 // SIGNUP: /api/auth/sign-up
