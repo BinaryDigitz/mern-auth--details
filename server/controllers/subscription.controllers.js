@@ -21,3 +21,15 @@ export const updateSubscription = asyncMiddleware ( async (req, res) =>{
 export const deleteSubscription = asyncMiddleware ( async (req, res) =>{
 
 });
+// GET USER SUBSCRIPTION: /api/user/:userId
+export const getUserSubscription = asyncMiddleware ( async (req, res) =>{
+
+});
+// CANCEL SUBSCRIPTION: /api/subscriptions/:subcriptionId/cancel
+export const cancelSubscription = asyncMiddleware ( async (req, res) =>{
+
+});
+// UPCOMING RENEWALS SUBSCRIPTION: /api/subscriptions/upcoming-renewals
+export const upcomingRenewals = asyncMiddleware ( async (req, res) =>{
+
+});

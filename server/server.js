@@ -1,5 +1,6 @@
 import cookieParser from "cookie-parser";
 import express from "express";
+import loadDatabase from './config/loadDatabase.js'
 import morgan from "morgan";
 import cors from "cors";
 import { JWT_SECRET } from "./config/env.js";
@@ -27,7 +28,7 @@ app.use(morgan("tiny"));
 
 // routes
 app.get('/', (req, res) =>{
-    res.json({success: true, message: 'Hello world'})
+  res.json({success: true, message: 'Hello world'})
 })
 app.use('/api/auth', authRouter)
 app.use('/api/users', userRouter)
@@ -35,4 +36,6 @@ app.use('/api/users', userRouter)
 
 // Handle error handling
 app.use(errorHandler)
+
 export default app;
+loadDatabase()

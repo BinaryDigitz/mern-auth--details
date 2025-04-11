@@ -1,4 +1,4 @@
-import { createSubscription, getSubcription, updateSubscription, getSubcriptions, createSubscription, deleteSubscription } from '../controllers/subscription.controllers.js';
+import { createSubscription, getSubcription, upcomingRenewals, getUserSubscription, cancelSubscription, updateSubscription, getSubcriptions, createSubscription, deleteSubscription } from '../controllers/subscription.controllers.js';
 import { Router} from express;
 
 
@@ -10,9 +10,16 @@ subscriptionRouter.get('/:subscriptionId', getSubcription)
 
 subscriptionRouter.post('/', createSubscription)
 
-subscriptionRouter.update('/:subscriptionId', updateSubscription)
+subscriptionRouter.put('/:subscriptionId', updateSubscription)
 
-subscriptionRouter.post('/:subscriptionId' , deleteSubscription)
+subscriptionRouter.delete('/:subscriptionId' , deleteSubscription)
+
+
+subscriptionRouter.get('/user/:userId' , getUserSubscription)
+
+subscriptionRouter.put('/:id/cancel' , cancelSubscription)
+
+subscriptionRouter.get('/upcoming-renewals' , upcomingRenewals)
 
 
 
