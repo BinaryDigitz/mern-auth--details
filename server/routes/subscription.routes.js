@@ -10,7 +10,7 @@ const subscriptionRouter = Router()
 
 subscriptionRouter.get('/', getSubcriptions)
 
-subscriptionRouter.get('/:subscriptionId', getSubcription)
+subscriptionRouter.get('/user/:subscriptionId', authrize, getSubcription)
 
 subscriptionRouter.post('/', authrize, createSubscription)
 

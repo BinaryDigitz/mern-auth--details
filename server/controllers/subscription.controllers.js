@@ -8,9 +8,15 @@ export const getSubcriptions = asyncMiddleware ( async (req, res) =>{
 
 });
 
-// GET SUBSCRIPTION: /api/subscriptions/subscriptionId
+// GET SUBSCRIPTION: /api/subscriptions/user/subscriptionId
 export const getSubcription = asyncMiddleware ( async (req, res) =>{
-
+  //    Check if the user is thesame as the one in the token
+  
+if (req.user.id !== req.params.subscriptionId){
+    return res.json(subcriptionSuccess('Unauthorized', 401))
+}
+const subcription = await Subscription.findById(req.user._id)
+return res.json(subcriptionSuccess('Fetch successfull', 200, subcription))
 });
 
 // CREATE SUBSCRIPTION: /api/subscriptions
