@@ -1,5 +1,9 @@
-import { createSubscription, getSubcription, upcomingRenewals, getUserSubscription, cancelSubscription, updateSubscription, getSubcriptions, createSubscription, deleteSubscription } from '../controllers/subscription.controllers.js';
-import { Router} from express;
+import { Router} from 'express';
+import { createSubscription, getSubcription,
+     upcomingRenewals, getUserSubscription,
+      cancelSubscription, updateSubscription,
+       getSubcriptions, deleteSubscription } from '../controllers/subscription.controllers.js';
+import authrize from '../middleware/auth.middleware.js';
 
 
 const subscriptionRouter = Router()
@@ -8,7 +12,7 @@ subscriptionRouter.get('/', getSubcriptions)
 
 subscriptionRouter.get('/:subscriptionId', getSubcription)
 
-subscriptionRouter.post('/', createSubscription)
+subscriptionRouter.post('/', authrize, createSubscription)
 
 subscriptionRouter.put('/:subscriptionId', updateSubscription)
 

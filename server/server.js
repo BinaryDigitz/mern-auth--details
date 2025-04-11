@@ -7,6 +7,8 @@ import { JWT_SECRET } from "./config/env.js";
 import authRouter from "./routes/auth.routes.js";
 import userRouter from "./routes/user.routes.js";
 import errorMiddleware from "./middleware/error.middleware.js";
+import arcjetMiddleware from "./middleware/arcject.middleware.js";
+import subscriptionRouter from "./routes/subscription.routes.js";
 
 // Terminate process if no JWT_SECRET
 if (!JWT_SECRET) {
@@ -31,6 +33,7 @@ app.use(cors(corsOrigin));
 app.use(cookieParser());
 app.use(morgan("tiny"));
 app.use(express.urlencoded({ extended : false}))
+app.use(arcjetMiddleware)
 
 // routes
 app.get('/', (req, res) =>{
@@ -38,6 +41,7 @@ app.get('/', (req, res) =>{
 })
 app.use('/api/auth', authRouter)
 app.use('/api/users', userRouter)
+app.use('/api/subscriptions', subscriptionRouter)
 
 
 // Handle error handling
