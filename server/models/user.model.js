@@ -1,6 +1,6 @@
 import mongoose from "mongoose";
 import jwt from "jsonwebtoken";
-import { JWT_SECRET } from "../config/env.js";
+import { JWT_SECRET, JWT_SECRET_EXPIRES_IN } from "../config/env.js";
 
 const userSchema = mongoose.Schema(
   {
@@ -33,9 +33,9 @@ const userSchema = mongoose.Schema(
 
 // save token generation token in database
 userSchema.methods.generateToken = function () {
-  return jwt.sign({ id: this._id }, JWT_SECRET, { expiresIn: "3d" });
+  return jwt.sign({ id: this._id }, JWT_SECRET, { expiresIn: JWT_SECRET_EXPIRES_IN });
 };
 
-const UserModel = mongoose.models.Users || mongoose.model("User", userSchema);
+const UserModel = mongoose.models.users || mongoose.model("user", userSchema);
 
 export default UserModel;

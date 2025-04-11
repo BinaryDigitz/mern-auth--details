@@ -9,10 +9,10 @@ export function userFail(message, statusCode = 400) {
 }
 
 // Return messages for Auth controller
-export function userSuccess(message, statusCode = 200, user = null) {
-  return { success: true, statusCode, message, user };
+export function authSuccess(message, statusCode = 200, data=nulll) {
+  return { success: true, statusCode, message, data };
 }
-export function userFail(message, statusCode = 400) {
+export function authFail(message, statusCode = 400) {
   return { success: false, statusCode, message, };
 }
 
