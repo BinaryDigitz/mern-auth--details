@@ -5,7 +5,7 @@ import cors from "cors";
 import { JWT_SECRET } from "./config/env.js";
 import errorHandler from "./middleware/errorHandler.js";
 import authRouter from "./routes/auth.routes.js";
-import userRoutes from "./routes/user.routes.js";
+import userRouter from "./routes/user.routes.js";
 
 // Terminate process if no JWT_SECRET
 if (!JWT_SECRET) {
@@ -30,7 +30,7 @@ app.get('/', (req, res) =>{
     res.json({success: true, message: 'Hello world'})
 })
 app.use('/api/auth', authRouter)
-app.use('/api/users', userRoutes)
+app.use('/api/users', userRouter)
 
 
 // Handle error handling

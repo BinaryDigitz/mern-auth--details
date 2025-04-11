@@ -17,6 +17,6 @@ export const updateUser = asyncMiddleware ( async (req, res ) =>{
 
 })
 // DELETE USER: /api/users/:userId
-export const deleteuser = asyncMiddleware ( async (req, res ) =>{
+export const deleteUser = asyncMiddleware ( async (req, res ) =>{
 
 })
